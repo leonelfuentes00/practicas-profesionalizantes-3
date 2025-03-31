@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>D2-4</title>
+</head>
+
+<body>
+  <script>
+    const flowchart = {
+    title: "Basic Flowchart",
+    start: "Step 1",
+    steps: [
+        {
+            id: "Step 1",
+            type: "decision",
+            question: "Lamp plugged in?",
+            condition: Boolean,
+            next: {
+                true: "Step 2",
+                false: "End 1"
+            }
+        },
+        {
+            id: "Step 2",
+            type: "decision",
+            question: "Bulb burned out?",
+            condition: Boolean,
+            next: {
+                true: "End 2",
+                false: "End 3"
+            }
+        }
+    ],
+    
+    endings: [
+        { id: "End 1", description: "Plug in lamp" },
+        { id: "End 2", description: "Replace bulb" },
+        { id: "End 3", description: "Repair lamp" }
+    ]
+};
+
+console.log(flowchart);
+
+  </script>
+</body>
+</html>

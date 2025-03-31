@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>D2-2</title>
+</head>
+
+<body>
+  <script>
+    const factura = {
+        tipo: "A",
+        codigo: "COD.01",
+        nrocompr: "0001-00000075",
+        fechaemision: "23/02/2016",
+        responsableinscripto: "null",
+        CUIT: "20-28717013-1",
+        condiciondeventa: "Contado",
+        empresa: {
+            razonsocial: "EMPRESA S.A.",
+            direccion: "Belgrano 1010",
+            localidad: "Capital Federal",
+            tel: "11 25879645",
+            ingbrutos: "30-2222222-9",
+            inicioactividad: "01/01/2010"
+        },
+        cliente: {
+            nombre: "SOL S.R.L.",
+            direccion: "San Martin 587 Capital Federal",
+            localidad: "Buenos Aires",
+            respiva: "Responsable Inscripto",
+            cuit: "30-1111111-8",
+        },
+        items: [{
+                codigo: "5896",
+                descripcion: "LATEX INTERIOR BLANCO x20L",
+                cantidad: 2.00,
+                unidadMedida: "",
+                precioUnitario: 515.36,
+                bonificacion: 0.00,
+                alicuotaIVA: 21,
+                total: 1247.17
+            },
+            {
+                codigo: "5897",
+                descripcion: "PINCEL N°20",
+                cantidad: 5.00,
+                unidadMedida: "",
+                precioUnitario: 82.36,
+                bonificacion: 0.00,
+                alicuotaIVA: 21,
+                total: 498.28
+            },],
+        montos: {
+            importenetogravado: 1442.52,
+            iva21: 302.93,
+            subtotal: 1745.45,
+            total: 1745.45,
+            totalenletras: "son: un mil setecientos cuarenta y cinco con 45",
+        }
+    }   
+  </script>
+</body>
+</html>

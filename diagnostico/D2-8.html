@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>D2-8</title>
+</head>
+
+// Object: estructura de clave-valor
+// const obj = { clave1: valor1, clave2: valor2 };
+
+// Array: lista ordenada de valores
+// const arr = [valor1, valor2, valor3];
+
+// Map: estructura de clave-valor con claves dinámicas
+// const map = new Map();
+// map.set(clave1, valor1);
+// map.get(clave1);
+
+<body>
+  <script>
+    const escenarioCompleto = {
+      escenario: {
+        fondo: ["negro"],
+        elementos: [
+          { tipo: "cascada", color: "azul" },
+          { tipo: "agua", color: "azulOscuro" },
+          { tipo: "pasto", color: "verde" },
+          { tipo: "rocas", color: "marron"},
+          { tipo: "puerta", cerradura: "roja", color: "marron" },
+          { tipo: "escalera", color: "marron" }
+        ]
+      },
+      
+      enemigos: [
+        {tipo: "caracol", color: "verde", colorcaparazon: "rosa"}
+      ],
+
+      personajes: [
+        {nombre: "personaje1", estado: "activo"},
+        {nombre: "personaje2", estado: "activo"},
+        {nombre: "personaje3", estado: "activo"}
+      ],
+
+      interfazInferior: {
+        fondo: ["piedras"],
+        items: ["llave roja", "llave amarilla", "mango", "escudo"],
+        saludActual: {personaje1: saludActual.vidaMaxima, 
+                      personaje2: saludActual.falta1Salud,
+                      personaje3: saludActual.falta2Salud},
+        personajeSeleccionado: ["Personaje1", "Personaje 2"],
+        descartarObjetos: ["tacho de basura"],
+        seleccionarObjeto: {color: "amarillo"}
+      }
+    };
+
+    const saludActual = {
+      vidaMaxima: ["rojo", "rojo", "rojo"],
+      falta1Salud: ["rojo", "rojo", "negro"],
+      falta2Salud: ["rojo", "negro", "negro"],
+      sinVida: ["negro", "negro", "negro"]
+    };
+  </script>
+</body>
+</html>
