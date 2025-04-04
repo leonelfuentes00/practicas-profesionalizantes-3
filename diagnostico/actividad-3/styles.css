@@ -1,0 +1,96 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.calculator {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    text-align: center;
+}
+
+#view {
+    width: 90%;
+    height: 60px;
+    text-align: right;
+    font-size: 2em;
+    border: none;
+    border-radius: 5px;
+    background: #f9f9f9;
+    padding: 10px;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5em;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 5px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    transform: rotateX(0deg) translateY(0);
+    box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.3);
+    perspective: 600px;
+}
+
+button:hover {
+    transform: rotateX(30deg);
+    box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.3);
+}
+
+.num {
+    background: #4e69ff;
+    color: white;
+}
+
+.num:hover {
+    background: #0a3ccc;
+}
+
+.op {
+    background: #91cf33;
+    color: white;
+}
+
+.op:hover {
+    background: #68a30f;
+}
+
+.borrar {
+    background: orangered;
+    color: white;
+    width: 100%;
+}
+
+.borrar:hover {
+    background: red;
+}
+
+.igual {
+    background: orange;
+    color: white;
+}
+
+.igual:hover {
+    background: rgb(187, 124, 8);
+}
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+}
+
+td {
+    padding: 5px;
+}
