@@ -1,0 +1,23 @@
+Objeto: Auto
+
+Propiedades/Atributos:
+
+Nombre			     | Tipo de dato 	| Cte/Variable | Rango de valores posibles  | f(c)
+-cantidadCombustible    double             variable        0-capacidadDelTanque       cargarCombustible, acelerar
+-capacidadDelTanque     double             constante       100
+-motor                  boolean            variable        true/false                 encenderMotor, apagarMotor
+-velocidadMax           double             constante       120                     
+-velocidadActual        double             variable        0-velocidadMax             acelerar, frenar
+-puertasAbiertas        boolean            variable        true/false                 abrirPuertas, cerrarPuertas
+-tipoCombustible        string             variable        "gas", "nafta", "etc"      cargarCombustible
+-ruedas                 int             constante       4
+
+Comportamiento:
+Nombre			   | Parámetros/Tipo		                                | Retorno/Tipo
+cargarCombustible    tipoCombustible: string, cantidadCombustible: double
+acelerar             velocidadActual: double
+frenar               
+encenderMotor        motor: boolean(true)
+apagarMotor          motor: boolean(false)
+abrirPuertas
+cerrarPuertas
