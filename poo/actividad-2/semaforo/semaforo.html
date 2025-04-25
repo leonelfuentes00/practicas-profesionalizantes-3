@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Semáforo</title>
+  <style>
+    body {
+      background: #222;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .semaforo {
+      width: 100px;
+      background: black;
+      padding: 20px;
+      margin: 0 auto 20px;
+      border-radius: 10px;
+    }
+    .luz {
+      width: 60px;
+      height: 60px;
+      margin: 10px auto;
+      border-radius: 50%;
+      background: grey;
+      transition: background 0.3s;
+    }
+    .rojo {
+      background: red;
+    }
+    .amarillo {
+      background: yellow;
+    }
+    .verde {
+      background: green;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+    .start {
+      background-color: green;
+      color: white;
+    }
+    .stop {
+      background-color: red;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Semáforo</h1>
+
+<div class="semaforo">
+  <div id="luzRoja" class="luz"></div>
+  <div id="luzAmarilla" class="luz"></div>
+  <div id="luzVerde" class="luz"></div>
+</div>
+
+<div>
+  <button class="start" onclick="semaforo.activarAutomatico(5000)">Iniciar Automático</button>
+  <button class="stop" onclick="semaforo.detenerAutomatico()">Detener Automático</button>
+  <button onclick="semaforo.prenderLuz('rojo')">Rojo Manual</button>
+  <button onclick="semaforo.prenderLuz('amarillo')">Amarillo Manual</button>
+  <button onclick="semaforo.prenderLuz('verde')">Verde Manual</button>
+</div>
+
+<script>
+class Semaforo {
+
+    constructor() {
+        this.luzRoja = false;
+        this.luzAmarilla = false;
+        this.luzVerde = false;
+        this.colorActual = "rojo";
+        this.colorAnterior = null;
+        this.temporizador = 5000;
+        this.automatico = false;
+        this.intervalId = null;
+    }
+
+    prenderLuz(color) {
+        this.colorAnterior = this.colorActual;
+        this.apagarTodas();
+        if (color === "rojo") this.luzRoja = true;
+        if (color === "amarillo") this.luzAmarilla = true;
+        if (color === "verde") this.luzVerde = true;
+        this.colorActual = color;
+        this.actualizarVista();
+    }
+
+
+    apagarLuz(color) {
+        if (color === "rojo") this.luzRoja = false;
+        if (color === "amarillo") this.luzAmarilla = false;
+        if (color === "verde") this.luzVerde = false;
+        this.actualizarVista();
+    }
+
+    apagarTodas() {
+        this.luzRoja = false;
+        this.luzAmarilla = false;
+        this.luzVerde = false;
+    }
+
+    iniciarCambioEstado() {
+    if (this.colorActual === "rojo") {
+        this.prenderLuz("amarillo");
+        this.temporizador = 2000;
+    } else if (this.colorActual === "amarillo") {
+        if (this.colorAnterior === "rojo") {
+        this.prenderLuz("verde");
+        this.temporizador = 5000;
+        } else if (this.colorAnterior === "verde") {
+        this.prenderLuz("rojo");
+        this.temporizador = 5000;
+        }
+    } else if (this.colorActual === "verde") {
+        this.prenderLuz("amarillo");
+        this.temporizador = 2000;
+    }
+
+    if (this.automatico) {
+        clearInterval(this.intervalId);
+        this.intervalId = setInterval(() => this.iniciarCambioEstado(), this.temporizador);
+    }
+    }
+
+    cicloAutomatico() {
+        this.intervalId = setInterval(() => this.iniciarCambioEstado(), this.temporizador);
+    }
+
+    activarAutomatico(intervalo) {
+        this.temporizador = intervalo;
+        this.automatico = true;
+        this.iniciarCambioEstado();
+    }
+
+    detenerAutomatico() {
+        clearInterval(this.intervalId);
+        this.automatico = false;
+    }
+
+    actualizarVista() {
+        document.getElementById("luzRoja").className = "luz" + (this.luzRoja ? " rojo" : "");
+        document.getElementById("luzAmarilla").className = "luz" + (this.luzAmarilla ? " amarillo" : "");
+        document.getElementById("luzVerde").className = "luz" + (this.luzVerde ? " verde" : "");
+    }
+}
+
+// Inicializar
+const semaforo = new Semaforo();
+semaforo.prenderLuz("rojo");
+</script>
+
+</body>
+</html>

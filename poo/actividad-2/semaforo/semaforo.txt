@@ -1,0 +1,25 @@
+Objeto: Semaforo
+
+Propiedades/Atributos:
+
+Nombre			     | Tipo de dato 	| Cte/Variable | Rango de valores posibles  | f(c)
+luzRoja                boolean            variable       true/false                   prenderLuz, apagarLuz |
+luzAmarilla            boolean            variable       true/false                   prenderLuz, apagarLuz |
+luzVerde               boolean            variable       true/false                   prenderLuz, apagarLuz |
+colorActual            string             variable       "rojo", "amarillo", "verde"  prenderLuz, apagarLuz, iniciarCambioEstado |
+temporizador           number             variable       >= 1000 (milisegundos)       cicloAutomatico                   |
+automatico             boolean            variable       true/false                   activarAutomatico, detenerAutomatico |
+
+Comportamiento:
+Nombre			   | Parámetros/Tipo		                                | Retorno/Tipo
+prenderLuz           color: string    
+apagarLuz            color: string    
+iniciarCambioEstado  --              
+cicloAutomatico      --                  
+activarAutomatico    intervalo: number    
+detenerAutomatico    --                   
+
+Revisión:
+    Atributos:
+    Nombre			     | Tipo de dato 	| Cte/Variable | Rango de valores posibles          | f(c)
+    colorAnterior          string	          variable	     "rojo", "amarillo", "verde" o null	  prenderLuz, iniciarCambioEstado

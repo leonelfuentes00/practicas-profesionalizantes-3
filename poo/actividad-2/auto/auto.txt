@@ -10,7 +10,7 @@ Nombre			     | Tipo de dato 	| Cte/Variable | Rango de valores posibles  | f(c)
 -velocidadActual        double             variable        0-velocidadMax             acelerar, frenar
 -puertasAbiertas        boolean            variable        true/false                 abrirPuertas, cerrarPuertas
 -tipoCombustible        string             variable        "gas", "nafta", "etc"      cargarCombustible
--ruedas                 int             constante       4
+-ruedas                 int                constante       4
 
 Comportamiento:
 Nombre			   | Parámetros/Tipo		                                | Retorno/Tipo
