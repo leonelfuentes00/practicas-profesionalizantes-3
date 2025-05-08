@@ -1,0 +1,24 @@
+Objeto: Ventilador
+
+Propiedades/Atributos:
+
+Nombre			     | Tipo de dato 	| Cte/Variable | Rango de valores posibles  | f(c)
+encendido	            boolean	          variable        true / false	              encenderVentilador, apagarVentilador
+velocidad/Potencia	    int	              variable	      0 - velocidadMax	          aumentarVelocidad, disminuirVelocidad
+velocidadMax	        int	              constante	      3 (serian 3 rangos de potencia) --
+alturaDeBase	        double	          variable	      0.7m - 1.4m	              subirAltura, bajarAltura
+
+
+Comportamiento:
+Nombre			   | Parámetros/Tipo		    | Retorno/Tipo
+encenderVentilador   --	                          --	
+apagarVentilador	 --	                          --	
+aumentarVelocidad	 --	                          --
+disminuirVelocidad	 --	                          --
+subirAltura	         altura: double	              --	
+bajarAltura	         altura: double	              --	
+
+Revisión:
+    Atributos:
+    Nombre			     | Tipo de dato 	| Cte/Variable | Rango de valores posibles          | f(c)
+

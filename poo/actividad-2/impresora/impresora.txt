@@ -1,0 +1,25 @@
+Objeto: Impresora
+
+Propiedades/Atributos:
+
+Nombre			     | Tipo de dato 	| Cte/Variable | Rango de valores posibles  | f(c)
+encendida              boolean            variable       true/false                   encenderImpresora, apagarImpresora |
+tintaActual            double             variable       0-tintaMax                   imprimir, recargarTinta
+tintaMax               int                constante      100                          --
+hojasActuales          int                variable       0-hojasMax                   imprimir, recargarHojas
+hojasMax               int                constante      30                           --
+TipoDeImpresion        int                variable       1-2 (1=B&N, 2=color)         alternarTiposDeImpresion |
+
+
+Comportamiento:
+Nombre			   | Parámetros/Tipo                                    | Retorno/Tipo
+encenderImpresora    --                                                     --
+apagarImpresora      --                                                     --  
+imprimir             paginas: int                                          --
+recargarTinta        cantidad: double                                       --
+recargarHojas        cantidad: int                                          --
+alternarTiposDeImpresion --                                                 --
+
+Revisión:
+    Atributos:
+    Nombre			     | Tipo de dato 	| Cte/Variable | Rango de valores posibles          | f(c)
