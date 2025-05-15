@@ -74,6 +74,8 @@
   <button onclick="semaforo.prenderLuz('verde')">Verde Manual</button>
 </div>
 
+ <canvas id="myCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
+
 <script> 
 class Semaforo {
 
@@ -157,9 +159,59 @@ class Semaforo {
     }
 }
 
+class Circle {
+    constructor(c, ctx, canvasWidth, canvasHeight, x, y, radius) {
+        this.c = c;
+        this.ctx = ctx;
+        this.canvasWidth = canvasWidth;
+        this.canvasHeight = canvasHeight;
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+    }
+    draw() {
+        this.ctx.beginPath();
+        this.ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        this.ctx.fillStyle = "red";
+        this.ctx.fill();
+        this.ctx.closePath();
+    }
+    clear() {
+        this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+    }
+    move(speed) {
+        this.x += speed;
+        if (this.x - this.radius > this.canvasWidth) {
+            this.x = -this.radius; // reiniciar a la izquierda
+        }
+    }
+}
+
 // Inicializar
 const semaforo = new Semaforo();
 semaforo.prenderLuz("rojo");
+
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+const circle = new Circle(canvas, ctx, canvas.width, canvas.height, 50, 50, 20);
+
+function animar() {
+    let velocidad = 0;
+    if (semaforo.luzRoja) {
+        velocidad = 0;
+    } else if (semaforo.luzAmarilla) {
+        velocidad = 1;
+    } else if (semaforo.luzVerde) {
+        velocidad = 2;
+    }
+
+    circle.move(velocidad);
+    circle.clear();
+    circle.draw();
+
+    requestAnimationFrame(animar);
+}
+animar();
 </script>
 
 </body>
