@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Auto Canvas</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f0f0f0;
+    }
+    canvas {
+      display: block;
+      border: 2px solid black;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas" width="1500" height="800"></canvas>
+
+<script>
+class Rectangle {
+    constructor(x, y, width, height, ctx, color) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.angle = 0;
+        this.ctx = ctx;
+        this.speed = 7;
+        this.rotationSpeed = 0.075;
+        this.color = color;
+    }
+
+    draw() {
+        this.ctx.save();
+        this.ctx.translate(this.x, this.y);
+        this.ctx.rotate(this.angle);
+        this.ctx.fillStyle = this.color;
+        this.ctx.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
+        this.ctx.restore();
+    }
+
+    // Movimiento y rotación para los autos
+    // Se utilizan funciones trigonométricas para calcular la nueva posición
+    moveForward() {
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed;
+    }
+
+    moveBackward() {
+        this.x -= Math.cos(this.angle) * this.speed;
+        this.y -= Math.sin(this.angle) * this.speed;
+    }
+
+    rotateLeft() {
+        this.angle -= this.rotationSpeed;
+    }
+
+    rotateRight() {
+        this.angle += this.rotationSpeed;
+    }
+}
+
+class RectangleController {
+    constructor(rectangle, keyMap) {
+        this.rectangle = rectangle;
+        this.keys = {};
+        this.keyMap = keyMap;
+
+        window.addEventListener('keydown', (e) => {
+            this.keys[e.key] = true;
+        });
+
+        window.addEventListener('keyup', (e) => {
+            this.keys[e.key] = false;
+        });
+    }
+
+    update() {
+        if (this.keys[this.keyMap.forward]) this.rectangle.moveForward();
+        if (this.keys[this.keyMap.backward]) this.rectangle.moveBackward();
+        if (this.keys[this.keyMap.left]) this.rectangle.rotateLeft();
+        if (this.keys[this.keyMap.right]) this.rectangle.rotateRight();
+    }
+}
+
+// Función para dibujar la pista con canvas y el contexto
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+
+// Creacion de los autos y sus controladores
+const car1 = new Rectangle(400, 200, 100, 50, ctx, 'magenta');
+const controller1 = new RectangleController(car1, {
+    forward: 'ArrowUp',
+    backward: 'ArrowDown',
+    left: 'ArrowLeft',
+    right: 'ArrowRight'
+});
+
+const car2 = new Rectangle(400, 400, 100, 50, ctx, 'blue');
+const controller2 = new RectangleController(car2, {
+    forward: 'w',
+    backward: 's',
+    left: 'a',
+    right: 'd'
+});
+
+function loop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    controller1.update();
+    controller2.update();
+
+    car1.draw();
+    car2.draw();
+
+    requestAnimationFrame(loop);
+}
+
+loop();
+</script>
+</body>
+</html>
