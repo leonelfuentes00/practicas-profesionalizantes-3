@@ -13,11 +13,11 @@ export class ShapeController {
     }
 
     update() {
-        if (!this.shape) return;
+    if (!this.shape) return;
 
-        if (this.keys['ArrowUp']) this.shape.move(0, -this.speed);
-        if (this.keys['ArrowDown']) this.shape.move(0, this.speed);
-        if (this.keys['ArrowLeft']) this.shape.move(-this.speed, 0);
-        if (this.keys['ArrowRight']) this.shape.move(this.speed, 0);
+    if (this.keys['ArrowUp']) this.shape.moveForward();
+    if (this.keys['ArrowDown']) this.shape.moveBackward();
+    if (this.keys['ArrowLeft']) this.shape.rotateLeft();
+    if (this.keys['ArrowRight']) this.shape.rotateRight();
     }
 }

@@ -10,6 +10,7 @@ export class Rectangle extends Shape {
     draw() {
         this.ctx.save();
         this.ctx.translate(this.x, this.y);
+        this.ctx.rotate(this.angle);
         this.ctx.fillStyle = this.color;
         this.ctx.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
         this.ctx.restore();

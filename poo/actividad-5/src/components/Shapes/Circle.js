@@ -8,7 +8,7 @@ export class Circle extends Shape {
 
     draw() {
         this.ctx.beginPath();
-        this.ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        this.ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);;
         this.ctx.fillStyle = this.color;
         this.ctx.fill();
     }

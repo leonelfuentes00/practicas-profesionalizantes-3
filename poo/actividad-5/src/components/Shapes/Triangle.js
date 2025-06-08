@@ -8,12 +8,16 @@ export class Triangle extends Shape {
     }
 
     draw() {
+        this.ctx.save();
+        this.ctx.translate(this.x, this.y);
+        this.ctx.rotate(this.angle);
         this.ctx.beginPath();
-        this.ctx.moveTo(this.x, this.y);
-        this.ctx.lineTo(this.x + this.base / 2, this.y - this.height);
-        this.ctx.lineTo(this.x - this.base / 2, this.y - this.height);
+        this.ctx.moveTo(0, 0);
+        this.ctx.lineTo(this.base / 2, -this.height);
+        this.ctx.lineTo(-this.base / 2, -this.height);
         this.ctx.closePath();
         this.ctx.fillStyle = this.color;
         this.ctx.fill();
+        this.ctx.restore();
     }
 }
