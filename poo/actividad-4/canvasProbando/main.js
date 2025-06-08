@@ -1,25 +1,15 @@
-import { Rectangle } from './Rectangle.js';
+import { Car } from './Car.js';
 import { RectangleController } from './RectangleController.js';
-import { loadTrackImage, drawTrack } from './Track.js';
+import { Track } from './Track.js';
 
-let trackImage;
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-const trackSelector = document.getElementById('trackSelector');
 
-function loadAndStartTrack(path) {
-    loadTrackImage(path, (img) => {
-        trackImage = img;
-    });
-}
+const track = new Track(canvas.width, canvas.height, ctx);
 
-loadAndStartTrack(trackSelector.value);
+const car1 = new Car(500, 650, 40, 20, ctx, 'magenta');
+const car2 = new Car(500, 680, 40, 20, ctx, 'cyan');
 
-trackSelector.addEventListener('change', (e) => {
-    loadAndStartTrack(e.target.value);
-});
-
-const car1 = new Rectangle(500, 650, 40, 20, ctx, 'magenta');
 const controller1 = new RectangleController(car1, {
     forward: 'ArrowUp',
     backward: 'ArrowDown',  
@@ -27,7 +17,6 @@ const controller1 = new RectangleController(car1, {
     right: 'ArrowRight'
 });
 
-const car2 = new Rectangle(500, 680, 40, 20, ctx, 'cyan');
 const controller2 = new RectangleController(car2, {
     forward: 'w',
     backward: 's',
@@ -38,13 +27,20 @@ const controller2 = new RectangleController(car2, {
 function loop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    if (trackImage) drawTrack(ctx, trackImage);
+    track.draw();
 
     controller1.update();
     controller2.update();
 
-    car1.drawRectangle();
-    car2.drawRectangle();
+    if (!track.isOutOfBounds(car1)) {
+        car1.draw();
+        track.checkLap(car1);
+    }
+
+    if (!track.isOutOfBounds(car2)) {
+        car2.draw();
+        track.checkLap(car2);
+    }
 
     requestAnimationFrame(loop);
 }

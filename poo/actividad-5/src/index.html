@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Canvas App</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      font-family: sans-serif;
+    }
+
+    #sidebar, #rightbar {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      gap: 10px;
+    }
+
+    #sidebar {
+      width: 180px;
+    }
+
+    #canvas {
+      border: 2px solid black;
+      margin: 10px;
+    }
+
+    #rightbar {
+      width: 200px;
+    }
+
+    #colorPicker {
+      width: 50px;
+      height: 50px;
+      border: 2px solid black;
+      cursor: pointer;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 4px;
+      text-align: center;
+    }
+
+    .active {
+      border: 2px solid green;
+    }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <button data-shape="rectangle">Crear rectángulo</button>
+    <button data-shape="circle">Crear círculo</button>
+    <button data-shape="triangle">Crear triángulo</button>
+    <label>Color</label>
+    <input type="color" id="colorInput" value="#000000" />
+  </div>
+
+  <canvas id="canvas" width="800" height="500"></canvas>
+
+  <div id="rightbar">
+    <div>Figuras creadas</div>
+    <table>
+      <thead>
+        <tr><th>Tipo</th><th>ID/Nombre</th></tr>
+      </thead>
+      <tbody id="figureList"></tbody>
+    </table>
+    <div id="activeLabel">Figura activa seleccionada actual: Ninguna</div>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

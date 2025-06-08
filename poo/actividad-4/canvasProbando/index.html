@@ -1,29 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Auto Canvas</title>
+  <meta charset="UTF-8">
+  <title>Juego de Carreras</title>
   <style>
-    body {
-      margin: 0;
-      background: #f0f0f0;
-    }
-    canvas {
-      display: block;
-      border: 2px solid black;
-      margin: auto;
-    }
+    body { margin: 0; background: #333; }
+    canvas { display: block; margin: auto; background: #111; border: 3px solid white; }
   </style>
 </head>
 <body>
-<canvas id="canvas" width="1500" height="800"></canvas>
-
-<select id="trackSelector">
-  <option value="./img/Track.jpg">Facil</option>
-  <option value="./img/Track3.jpg">Normal</option>
-  <option value="./img/Track2.jpg">Dificil</option>
-</select>
-
-<script type="module" src="main.js"></script>
+  <canvas id="gameCanvas" width="1000" height="600"></canvas>
+  <script type="module" src="main.js"></script>
 </body>
 </html>

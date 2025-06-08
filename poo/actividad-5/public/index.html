@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editor de Figuras</title>
+  <style>
+    body { font-family: sans-serif; display: flex; gap: 20px; padding: 20px; }
+    canvas { border: 2px solid black; background: white; }
+    .controls { display: flex; flex-direction: column; gap: 10px; }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <button onclick="createShape('rectangle')">Crear rectángulo</button>
+    <button onclick="createShape('circle')">Crear círculo</button>
+    <button onclick="createShape('triangle')">Crear triángulo</button>
+  </div>
+
+  <canvas id="canvas" width="800" height="600"></canvas>
+
+  <script type="module" src="../src/app.js"></script>
+</body>
+</html>

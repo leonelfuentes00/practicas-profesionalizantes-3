@@ -1,0 +1,18 @@
+A partir de la estructura desarrollada en "Sistema de objetos II" en donde figuran las entidades: Rectangle, RectangleController y GameEngineRenderer. Modifique y extienda la solución de modo tal que pueda desarrollarse el caso de uso representado en la imagen adjuntada "sistema-objetos-3.png" y lo expresado a continuación, respetando los principios SOLID:
+
+La solución deberá:
+
+-A través de un conjunto de botones permitirle al usuario crear diferentes figuras (además del rectángulo existente): Círculo y Triángulo equilátero. Al presionar en estos botones, se deberá preguntar al usuario por medio del uso de la función prompt(), el identificador (nombre único), las dimensiones de la figura, la coordenada (x,y) en donde deberá colocarse. El color de pintado será tomado de un input situado en la interfaz gráfica. Si no hay errores en la carga de la información, la figura deberá aparecer dibujada sobre el canvas y deberá aparecer en un listado tipo tabla a la derecha del canvas (especificando tipo/id). Habrá tantas entradas en la tabla como figuras creadas.
+
+-Cuando el usuario haga click sobre algún item de la tabla, se considerará la figura activa seleccionada  y será posible moverla con las flechas arriba, abajo, izquierda y derecha. Debe existir algún indicador sobre la interfaz gráfica de cuál es la figura que se seleccionó. Para simplificar, note que al pié de la interfaz hay un texto que indica el nombre. Podrá usar otro mecanismo como resaltar el registro de la tabla u otro a su preferencia.
+
+Consideraciones para la resolución
+
+-Empiece desarrollando la solución con Rectángulo y  el Círculo. El triángulo considere agregarlo solo al final cuando pueda lograr lo solicitado con estas dos figuras.
+
+
+-Para el caso del dibujado del triángulo equilátero (tres lados iguales) solo deberá pedir el tamaño de un lado.
+
+-No importa si el movimiento de las figuras se pisan o superponen al momento de la creación y en el movimiento. No debe hacer chequeos de colisiones de figuras.
+
+-Disfrute el software

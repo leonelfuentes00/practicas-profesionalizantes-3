@@ -1,4 +1,4 @@
-export class Rectangle {
+export class Car {
     constructor(x, y, width, height, ctx, color) {
         this.x = x;
         this.y = y;
@@ -6,12 +6,14 @@ export class Rectangle {
         this.height = height;
         this.angle = 0;
         this.ctx = ctx;
-        this.speed = 4;
+        this.speed = 7;
         this.rotationSpeed = 0.075;
         this.color = color;
+        this.laps = 0;
+        this.checkpointPassed = false;
     }
 
-    drawRectangle() {
+    draw() {
         this.ctx.save();
         this.ctx.translate(this.x, this.y);
         this.ctx.rotate(this.angle);
@@ -36,5 +38,14 @@ export class Rectangle {
 
     rotateRight() {
         this.angle += this.rotationSpeed;
+    }
+
+    getBoundingBox() {
+        return {
+            left: this.x - this.width / 2,
+            right: this.x + this.width / 2,
+            top: this.y - this.height / 2,
+            bottom: this.y + this.height / 2
+        };
     }
 }
