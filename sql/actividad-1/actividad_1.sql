@@ -1,69 +1,71 @@
-drop database actividad_1;
-create database actividad_1;
+set names utf8mb4 collate utf8mb4_bin;
+
+drop database if exists actividad_1;
+create database actividad_1 character set utf8mb4 collate utf8mb4_bin;
 
 use actividad_1;
 
-create table paises (
+create table country (
 	id int primary key auto_increment not null,
-	nombre varchar(40),
+	name varchar(40),
     capital varchar(40),
-	idioma varchar(20),
-    superficie double,
-    poblacion int);
+	language varchar(20),
+    area double,
+    population int);
 
 -- 
 delimiter //
-create procedure obtenerDatosPorPais(
-	in _nombre varchar(40)
+create procedure country_get_by_name(
+	in _name  varchar(40)
 )
 begin
-	select * from paises where nombre = _nombre;
+	select * from country  where name = _name;
 end;
 // delimiter;    
 
 --
 delimiter //
-create procedure crearPais(
-	in _nombre varchar(40),
+create procedure country_create(
+	in _name varchar(40),
     in _capital varchar(40),
-    in _idioma varchar(20),
-    in _superficie double, 
-	in _poblacion int
+    in _language varchar(20),
+    in _area double, 
+	in _area int
 )
 begin
-	insert into paises (nombre, capital, idioma, superficie, poblacion)
-    values (_nombre, _capital, _idioma, _superficie, _poblacion);
+	insert into country (name, capital, language, area, population)
+    values (_name, _capital, _language, _area, _population);
 end;
 // delimiter;
 --
 delimiter //
-create procedure editarPais(
+create procedure country_update(
 	in _id int,
-    in _nombre varchar(40),
+    in _name varchar(40),
     in _capital varchar(40),
-    in _idioma varchar(20),
+    in _language varchar(20),
     in _superficie double, 
 	in _poblacion int
 )
 begin
-	update paises
-    set nombre = _nombre, capital = _capital, idioma = _idioma, superficie = _superficie, poblacion = _poblacion
+	update country
+    set name = _name, capital = _capital, language = _language, area = _area, population = _population
     where id = _id;
 end;
 // delimiter;   
 --
 delimiter //
-create procedure eliminarPais(
+create procedure country_delete(
 	in _id int
 )
 begin
-	delete from paises where id = _id;
+	delete from country where id = _id;
 end;
 // delimiter ;   
 
 --
 
-insert into paises(nombre, capital, idioma, superficie, poblacion) values
+insert into country(name, capital, language, area, population) values
 	('argentina', 'caba', 'español', 11111111, 10101010),
 	('chile', 'santiago', 'español', 22222222, 20202020),
 	('brasil', 'brasilia', 'portugues', 33333333, 30303030),
@@ -72,13 +74,13 @@ insert into paises(nombre, capital, idioma, superficie, poblacion) values
     
 -- 
 
-call obtenerDatosPorPais('argentina');
+call country_get_by_name('argentina');
 
-call crearPais('peru', 'lima', 'español', '66666666', '60606060');
+call country_create('peru', 'lima', 'español', '66666666', '60606060');
 
-call editarPais(2, 'chile','sintiago', 'chileno','12345678','87654321');
+call country_update(2, 'chile','sintiago', 'chileno','12345678','87654321');
 
-call eliminarPais(5);
+call country_delete(5);
 
 -- select * from paises
 

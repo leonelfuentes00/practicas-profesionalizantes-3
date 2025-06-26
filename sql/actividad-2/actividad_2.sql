@@ -1,69 +1,71 @@
-drop database actividad_1;
-create database actividad_1;
+set names utf8mb4 collate utf8mb4_bin;
+
+drop database if exists actividad_1;
+create database actividad_1 character set utf8mb4 collate utf8mb4_bin;
 
 use actividad_1;
 
-create table paises (
+create table country (
 	id int primary key auto_increment not null,
-	nombre varchar(40),
+	name varchar(40),
     capital varchar(40),
-	idioma varchar(20),
-    superficie double,
-    poblacion int);
+	language varchar(20),
+    area double,
+    population int);
 
 -- 
 delimiter //
-create procedure obtenerDatosPorPais(
-	in _nombre varchar(40)
+create procedure country_get_by_name(
+	in _name  varchar(40)
 )
 begin
-	select * from paises where nombre = _nombre;
+	select * from country  where name = _name;
 end;
 // delimiter;    
 
 --
 delimiter //
-create procedure crearPais(
-	in _nombre varchar(40),
+create procedure country_create(
+	in _name varchar(40),
     in _capital varchar(40),
-    in _idioma varchar(20),
-    in _superficie double, 
-	in _poblacion int
+    in _language varchar(20),
+    in _area double, 
+	in _area int
 )
 begin
-	insert into paises (nombre, capital, idioma, superficie, poblacion)
-    values (_nombre, _capital, _idioma, _superficie, _poblacion);
+	insert into country (name, capital, language, area, population)
+    values (_name, _capital, _language, _area, _population);
 end;
 // delimiter;
 --
 delimiter //
-create procedure editarPais(
+create procedure country_update(
 	in _id int,
-    in _nombre varchar(40),
+    in _name varchar(40),
     in _capital varchar(40),
-    in _idioma varchar(20),
+    in _language varchar(20),
     in _superficie double, 
 	in _poblacion int
 )
 begin
-	update paises
-    set nombre = _nombre, capital = _capital, idioma = _idioma, superficie = _superficie, poblacion = _poblacion
+	update country
+    set name = _name, capital = _capital, language = _language, area = _area, population = _population
     where id = _id;
 end;
 // delimiter;   
 --
 delimiter //
-create procedure eliminarPais(
+create procedure country_delete(
 	in _id int
 )
 begin
-	delete from paises where id = _id;
+	delete from country where id = _id;
 end;
 // delimiter ;   
 
 --
 
-insert into paises(nombre, capital, idioma, superficie, poblacion) values
+insert into country(name, capital, language, area, population) values
 	('argentina', 'caba', 'español', 11111111, 10101010),
 	('chile', 'santiago', 'español', 22222222, 20202020),
 	('brasil', 'brasilia', 'portugues', 33333333, 30303030),
@@ -72,103 +74,102 @@ insert into paises(nombre, capital, idioma, superficie, poblacion) values
     
 -- 
 
-call obtenerDatosPorPais('argentina');
+call country_get_by_name('argentina');
 
-call crearPais('peru', 'lima', 'español', '66666666', '60606060');
+call country_create('peru', 'lima', 'español', '66666666', '60606060');
 
-call editarPais(2, 'chile','sintiago', 'chileno','12345678','87654321');
+call country_update(2, 'chile','sintiago', 'chileno','12345678','87654321');
 
-call eliminarPais(5);
+call country_delete(5);
 
 -- select * from paises
 
 
 -- Actividad 2
 
-create table ciudades (
+create table city (
 	id int primary key auto_increment not null,
-	nombre varchar(40),
-    superficie double,
-    poblacion int,
-    codigo_postal int,
-    ciudad_costera boolean,
-    id_pais varchar(50),
-    foreign key (id_pais) references paises(id)
+	name varchar(40),
+    area double,
+    population int,
+    postal_code int,
+    is_coastal boolean,
+    id_country varchar(50),
+    foreign key (id_country) references country(id)
     );
     
 delimiter //
-create procedure crearCiudad(
-    in _nombre varchar(40),
-    in _superficie double,
-    in _poblacion int,
-    in _codigo_postal int,
-    in _ciudad_costera boolean,
-    in _id_pais int
+create procedure city_create(
+    in _name varchar(40),
+    in _area double,
+    in _population int,
+    in _postal_code int,
+    in _is_coastal boolean,
+    in _id_country int
 )
 begin
-    insert into ciudades(nombre, superficie, poblacion, codigo_postal, ciudad_costera, id_pais)
-    values (_nombre, _superficie, _poblacion, _codigo_postal, _ciudad_costera, _id_pais);
+    insert into city (name, area, population, postal_code, is_coastal, id_country)
+    values (_name, _area, _population, _postal_code, _is_coastal, _id_country);
 end;
 //
 delimiter ;
 
 delimiter //
-create procedure editarCiudad(
+create procedure city_update(
     in _id int,
-    in _nombre varchar(40),
-    in _superficie double,
-    in _poblacion int,
-    in _codigo_postal int,
-    in _ciudad_costera boolean,
-    in _id_pais int
+    in _name varchar(40),
+    in _area double,
+    in _population int,
+    in _postal_code int,
+    in _is_coastal boolean,
+    in _id_country int
 )
 begin
-    update ciudades
-    set nombre = _nombre, superficie = _superficie, poblacion = _poblacion,
-        codigo_postal = _codigo_postal, ciudad_costera = _ciudad_costera, id_pais = _id_pais
+    update city
+    set name = _name, area = _area, population = _population, postal_code = _postal_code, is_coastal = _is_coastal, id_country = _id_country
     where id = _id;
 end;
 //
 delimiter ;
 
 delimiter //
-create procedure eliminarCiudad(
+create procedure city_delete(
     in _id int
 )
 begin
-    delete from ciudades where id = _id;
+    delete from city where id = _id;
 end;
 //
 delimiter ;
 
 delimiter //
-create procedure paisConCiudadMasPoblada()
+create procedure country_with_most_populated_city()
 begin
-	select paises.nombre as pais from paises
-    join ciudades on ciudades.id_pais = paises.id
-    order by ciudades.poblacion desc
+	select paises.name as pais from country
+    join city on city.id_country = country.id
+    order by city.population desc
     limit 1;
     end;
 // delimiter ;
 
 delimiter //
-create procedure paisesConCiudadesCosterasConMasDeUnMillonHabitantes()
+create procedure countries_with_coastal_cities_over_million()
 begin 
-	select paises.nombre as pais from paises
-    join ciudades on ciudades.id_pais = paises.id
-    where ciudades.ciudad_costera = true 
-		and ciudades.poblacion > 1000000 ;
+	select country.name as country from country
+    join city on city.id_country = country.id
+    where city.is_coastal = true 
+		and city.population > 1000000 ;
 end;
 // delimiter ;
 
 delimiter //
-create procedure ciudadConDensidadDePoblacionMasAlta()
+create procedure city_with_highest_population_density()
 begin
-	select paises.nombre as pais, ciudad.nombre as ciudad,
-			(ciudad.poblacion / ciudad.superficie) as densidad
-	from paises
-    join ciudades on ciudades.id_pais = paises.id
-    order by densidad desc
+	select country.name as country, city.name as city,
+			(city.population / city.area) as density
+	from country
+    join city on city.id_country = country.id
+    order by density desc
 	limit 1;
     end;
     
